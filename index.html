@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Practice: True / False / Not Given</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --primary: #2563eb;
+      --text: #1e293b;
+      --border: #e2e8f0;
+      --correct-bg: #dcfce7;
+      --correct-border: #16a34a;
+      --wrong-bg: #fee2e2;
+      --wrong-border: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .passage-box {
+      background-color: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 28px;
+      font-size: 1.05rem;
+    }
+
+    .instruction {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .question-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+      background: #fafafa;
+    }
+
+    .statement {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button.choice-btn {
+      flex: 1;
+      min-width: 100px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+
+    button.choice-btn:hover:not(:disabled) {
+      background-color: #e2e8f0;
+    }
+
+    button.choice-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.85;
+    }
+
+    .feedback-box {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+    }
+
+    .correct-feedback {
+      background-color: var(--correct-bg);
+      border: 1px solid var(--correct-border);
+      color: #14532d;
+    }
+
+    .incorrect-feedback {
+      background-color: var(--wrong-bg);
+      border: 1px solid var(--wrong-border);
+      color: #7f1d1d;
+    }
+
+    .btn-correct {
+      background-color: #22c55e !important;
+      color: white !important;
+      border-color: #16a34a !important;
+    }
+
+    .btn-wrong {
+      background-color: #ef4444 !important;
+      color: white !important;
+      border-color: #dc2626 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Reading Comprehension</h1>
+    
+    <div class="passage-box">
+      <strong>Elena’s Working Day:</strong><br>
+      Elena is a graphic designer who works from home three days a week. She enjoys drinking green tea every morning before starting her work at 8:30 AM. Although her company offers free lunch at the main office, Elena prefers cooking her own meals. She usually goes for a 20-minute jog in the evening to relax.
+    </div>
+
+    <p class="instruction">Read each statement and select <strong>TRUE</strong>, <strong>FALSE</strong>, or <strong>NOT GIVEN</strong>.</p>
+
+    <!-- Question 1 -->
+    <div class="question-block" id="q1">
+      <div class="statement">1. Elena travels to the office every single day.</div>
+      <div class="btn-group">
+        <button class="choice-btn" onclick="checkAnswer('q1', 'FALSE', this)">TRUE</button>
+        <button class="choice-btn" onclick="checkAnswer('q1', 'FALSE', this)">FALSE</button>
+        <button class="choice-btn" onclick="checkAnswer('q1', 'FALSE', this)">NOT GIVEN</button>
+      </div>
+      <div class="feedback-box">
+        <strong>Explanation:</strong> The text says she works from home three days a week, so she does not go to the office every day.
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-block" id="q2">
+      <div class="statement">2. Elena drinks coffee while she designs.</div>
+      <div class="btn-group">
+        <button class="choice-btn" onclick="checkAnswer('q2', 'NOT GIVEN', this)">TRUE</button>
+        <button class="choice-btn" onclick="checkAnswer('q2', 'NOT GIVEN', this)">FALSE</button>
+        <button class="choice-btn" onclick="checkAnswer('q2', 'NOT GIVEN', this)">NOT GIVEN</button>
+      </div>
+      <div class="feedback-box">
+        <strong>Explanation:</strong> The passage says she drinks green tea before starting, but it never mentions whether she drinks coffee while working.
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-block" id="q3">
+      <div class="statement">3. Elena likes preparing her own food.</div>
+      <div class="btn-group">
+        <button class="choice-btn" onclick="checkAnswer('q3', 'TRUE', this)">TRUE</button>
+        <button class="choice-btn" onclick="checkAnswer('q3', 'TRUE', this)">FALSE</button>
+        <button class="choice-btn" onclick="checkAnswer('q3', 'TRUE', this)">NOT GIVEN</button>
+      </div>
+      <div class="feedback-box">
+        <strong>Explanation:</strong> The text states that "Elena prefers cooking her own meals."
+      </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-block" id="q4">
+      <div class="statement">4. Elena runs for half an hour every evening.</div>
+      <div class="btn-group">
+        <button class="choice-btn" onclick="checkAnswer('q4', 'FALSE', this)">TRUE</button>
+        <button class="choice-btn" onclick="checkAnswer('q4', 'FALSE', this)">FALSE</button>
+        <button class="choice-btn" onclick="checkAnswer('q4', 'FALSE', this)">NOT GIVEN</button>
+      </div>
+      <div class="feedback-box">
+        <strong>Explanation:</strong> The passage specifies a "20-minute jog", not half an hour (30 minutes).
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function checkAnswer(questionId, correctAnswer, clickedButton) {
+      const questionBlock = document.getElementById(questionId);
+      const buttons = questionBlock.querySelectorAll('.choice-btn');
+      const feedbackBox = questionBlock.querySelector('.feedback-box');
+      const selectedAnswer = clickedButton.innerText.trim();
+
+      // Disable all buttons in this question
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.innerText.trim() === correctAnswer) {
+          btn.classList.add('btn-correct');
+        }
+      });
+
+      // Show immediate feedback
+      feedbackBox.style.display = 'block';
+      if (selectedAnswer === correctAnswer) {
+        feedbackBox.classList.add('correct-feedback');
+        feedbackBox.innerHTML = '<strong>Correct!</strong> ' + feedbackBox.innerHTML;
+      } else {
+        clickedButton.classList.add('btn-wrong');
+        feedbackBox.classList.add('incorrect-feedback');
+        feedbackBox.innerHTML = '<strong>Incorrect.</strong> Correct answer: <strong>' + correctAnswer + '</strong>.<br>' + feedbackBox.innerHTML;
+      }
+    }
+  </script>
+
+</body>
+</html>
